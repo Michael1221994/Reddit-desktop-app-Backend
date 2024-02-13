@@ -140,3 +140,4 @@ C:\Users\micha\source\repos\Actual_Project_V3\Actual_Project_V3\obj\Debug\net8.0
 C:\Users\micha\source\repos\Actual_Project_V3\Actual_Project_V3\obj\Debug\net8.0\Actual_Project_V3.pdb
 C:\Users\micha\source\repos\Actual_Project_V3\Actual_Project_V3\obj\Debug\net8.0\Actual_Project_V3.genruntimeconfig.cache
 C:\Users\micha\source\repos\Actual_Project_V3\Actual_Project_V3\obj\Debug\net8.0\ref\Actual_Project_V3.dll
+C:\Users\micha\source\repos\Actual_Project_V3\Actual_Project_V3\obj\Debug\net8.0\Actual_Project_V3.sourcelink.json

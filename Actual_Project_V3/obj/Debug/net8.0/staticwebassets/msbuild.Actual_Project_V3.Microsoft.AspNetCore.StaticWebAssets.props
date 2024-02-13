@@ -1024,6 +1024,22 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\lib\jquery\LICENSE.txt))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\Videos\032a9568-1e33-40c4-9a11-6d5d2af95022_video_2024-02-10_22-46-58.mp4))">
+      <SourceType>Package</SourceType>
+      <SourceId>Actual_Project_V3</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Actual_Project_V3</BasePath>
+      <RelativePath>Videos/032a9568-1e33-40c4-9a11-6d5d2af95022_video_2024-02-10_22-46-58.mp4</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\Videos\032a9568-1e33-40c4-9a11-6d5d2af95022_video_2024-02-10_22-46-58.mp4))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\Videos\51ac7790-1048-409c-ac6b-5344f87cef3b_video_2024-02-10_22-46-07.mp4))">
       <SourceType>Package</SourceType>
       <SourceId>Actual_Project_V3</SourceId>

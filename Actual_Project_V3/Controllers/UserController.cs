@@ -2,6 +2,7 @@
 using Actual_Project_V3.Repositories;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Actual_Project_V3.Controllers
 {
@@ -162,6 +163,31 @@ namespace Actual_Project_V3.Controllers
            
         }
 
+        [HttpGet]
+        public async Task<ActionResult> Login(string UserName, string Password)
+        {
+            List<string> errors = new List<string>();
+            if (ModelState.IsValid)
+            {
+                bool login= await userRepository.Login(UserName, Password);
+                if (login==true)
+                {
+                    return Ok("Login successful");
+                }
+                else { return NotFound("Password or Username not found"); }
+            }
+            else
+            {
+                foreach (var modelStateEntry in ModelState.Values)
+                {
+                    foreach (var error in modelStateEntry.Errors)
+                    {
+                        errors.Add(error.ErrorMessage);
+                    }
+                }
+            }
+            return BadRequest(errors);
+        }
     }
 }
 

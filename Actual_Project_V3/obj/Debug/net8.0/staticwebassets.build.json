@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "w6/1X7Yjd9aYLYHiM2twBQdGMYZdcMDs/QCqYbw6BdE=",
+  "Hash": "IaYcuh8uf6sjxnWevLW0AUssvCIT/cn2JBh0uq2rwnI=",
   "Source": "Actual_Project_V3",
   "BasePath": "_content/Actual_Project_V3",
   "Mode": "Default",
@@ -1250,6 +1250,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Identity": "C:\\Users\\micha\\source\\repos\\Actual_Project_V3\\Actual_Project_V3\\wwwroot\\Videos\\032a9568-1e33-40c4-9a11-6d5d2af95022_video_2024-02-10_22-46-58.mp4",
+      "SourceId": "Actual_Project_V3",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\micha\\source\\repos\\Actual_Project_V3\\Actual_Project_V3\\wwwroot\\",
+      "BasePath": "_content/Actual_Project_V3",
+      "RelativePath": "Videos/032a9568-1e33-40c4-9a11-6d5d2af95022_video_2024-02-10_22-46-58.mp4",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Videos\\032a9568-1e33-40c4-9a11-6d5d2af95022_video_2024-02-10_22-46-58.mp4"
     },
     {
       "Identity": "C:\\Users\\micha\\source\\repos\\Actual_Project_V3\\Actual_Project_V3\\wwwroot\\Videos\\51ac7790-1048-409c-ac6b-5344f87cef3b_video_2024-02-10_22-46-07.mp4",

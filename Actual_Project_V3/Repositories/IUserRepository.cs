@@ -13,6 +13,7 @@ namespace Actual_Project_V3.Repositories
         Task<string> Update(User user);
         Task<string> Delete(string Id);
         Task<bool> checkpasswordexists(string Password);
+        Task<bool> Login(string UserName, string Password);
         //Task<User> FindByIdAsync(string userId);
         //Task<User> FindByEmailAsync(string email);
         //Task<User> FindByNameAsync(string userName);

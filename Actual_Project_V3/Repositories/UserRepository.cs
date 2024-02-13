@@ -105,6 +105,16 @@ namespace Actual_Project_V3.Repositories
             IdentityResult result=await UsrMgr.CreateAsync(appuser,user.Password);
             return result;
         }
+
+        public async Task<bool> Login(string UserName, string Password)
+        {
+            User user = await UsrMgr.FindByNameAsync(UserName);
+            if (user != null)
+            {
+                return await UsrMgr.CheckPasswordAsync(user, Password);
+            }
+            else { return false; }
+        }
         //public  void SignUp( User users )
         //{
         //    User newuser = new User()
