@@ -14,8 +14,7 @@ namespace Actual_Project_V3.Models
         [ForeignKey("Comment_Id")]
         public int? Comment_Id { get; set; }
         public int Rating { get; set; } // if rating=1 it means upvote if rating=0 it means downvote
-
-
+        
         //Navigation
         public Post Post { get; set; }
         public User User { get; set; }

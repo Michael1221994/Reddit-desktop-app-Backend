@@ -34,7 +34,7 @@ namespace Actual_Project_V3.Migrations
                 column: "Sub_Id",
                 principalTable: "Subreddits",
                 principalColumn: "Sub_Id",
-                onDelete: ReferentialAction.Cascade);
+                onDelete: ReferentialAction.NoAction);
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Posts_Subreddits_Sub_Id",
@@ -42,7 +42,7 @@ namespace Actual_Project_V3.Migrations
                 column: "Sub_Id",
                 principalTable: "Subreddits",
                 principalColumn: "Sub_Id",
-                onDelete: ReferentialAction.Cascade);
+                onDelete: ReferentialAction.NoAction);
         }
 
         /// <inheritdoc />

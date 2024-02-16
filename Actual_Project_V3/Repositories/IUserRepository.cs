@@ -6,14 +6,14 @@ namespace Actual_Project_V3.Repositories
 {
     public interface IUserRepository
     {
-        Task<IdentityResult> SignUp(User user);
+        Task<(IdentityResult, string)> SignUp(User user);
         Task<bool> checkusernameexists(string Username);
 
         Task<bool> checkemailexists(string Email);
         Task<string> Update(User user);
         Task<string> Delete(string Id);
         Task<bool> checkpasswordexists(string Password);
-        Task<bool> Login(string UserName, string Password);
+        Task<(bool, string)> Login(string UserName, string Password);
         //Task<User> FindByIdAsync(string userId);
         //Task<User> FindByEmailAsync(string email);
         //Task<User> FindByNameAsync(string userName);

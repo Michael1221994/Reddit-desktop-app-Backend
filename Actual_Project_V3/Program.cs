@@ -27,6 +27,11 @@ builder.Services.AddDbContextPool<Context>(
 builder.Services.AddIdentity<User, IdentityRole>().
    AddEntityFrameworkStores<Context>()
   .AddDefaultTokenProviders();
+
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.LoginPath = "/User/Login";
+});
 //builder.Services.AddScoped<Context, Context>();
 //builder.Services.AddDbContext<Context>(options =>
 //{
@@ -69,6 +74,7 @@ var app = builder.Build();
     app.UseRouting();
     app.MapControllers();
 
+    app.UseAuthentication();
     app.UseAuthorization();
 
     app.MapControllerRoute(

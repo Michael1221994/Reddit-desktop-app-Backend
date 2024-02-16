@@ -1,5 +1,6 @@
 ﻿using Actual_Project_V3.Models;
 using Actual_Project_V3.Repositories;
+using Azure;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using static System.Runtime.InteropServices.JavaScript.JSType;
@@ -10,11 +11,12 @@ namespace Actual_Project_V3.Controllers
     {
         private readonly IUserRepository userRepository;
         private readonly IPasswordHasher<User> passwordHasher;
-        public UserController(IUserRepository userRepository, IPasswordHasher<User> passwordHasher)
-        
+        private SignInManager<User> signInManager;
+        public UserController(IUserRepository userRepository, IPasswordHasher<User> passwordHasher, SignInManager<User> signInManager)        
         {
             this.userRepository = userRepository;
-            passwordHasher = passwordHasher;
+            this.passwordHasher = passwordHasher;
+            this.signInManager = signInManager;
         }
 
         public IActionResult Index()
@@ -26,7 +28,7 @@ namespace Actual_Project_V3.Controllers
         public async Task<IActionResult> SignUp([FromBody] User user)
         {
             Dictionary<string, object> KeyValue = new Dictionary<string, object>();
-            string confirm = "";
+            string confirm;
             bool emailexists =  await userRepository.checkemailexists(user.Email);//kinda not working
             bool usernameexists= await userRepository.checkusernameexists(user.UserName);
             bool passwordexists = await userRepository.checkpasswordexists(user.Password);
@@ -42,10 +44,11 @@ namespace Actual_Project_V3.Controllers
                 KeyValue["modelstatefail"] = "false";
                 if (emailexists == false && usernameexists == false && passwordexists == true)
                 {
-                    IdentityResult result = await userRepository.SignUp(user);
+                    var (result, user_Id) = await userRepository.SignUp(user);
                     if (result.Succeeded)
                     {
                         KeyValue["success"] = "true";
+                        KeyValue["UserId"] = user_Id;
                     }
                     else
                     {
@@ -69,7 +72,7 @@ namespace Actual_Project_V3.Controllers
                     KeyValue["EmailExists"] = "true";
                 }
             }
-            
+           
             //    if (ModelState.IsValid)
             //    {
             //        User user1 = new User { User_Name = users.Email, Email = users.Email };
@@ -98,7 +101,7 @@ namespace Actual_Project_V3.Controllers
             //    confirm = "username already exists";
             //}
             //else confirm = "both email and username already exist";
-            
+
             return new JsonResult(KeyValue)
             {
                     ContentType = "application/json",
@@ -169,10 +172,11 @@ namespace Actual_Project_V3.Controllers
             List<string> errors = new List<string>();
             if (ModelState.IsValid)
             {
-                bool login= await userRepository.Login(UserName, Password);
+                var(login,user_Id)= await userRepository.Login(UserName, Password);
                 if (login==true)
                 {
-                    return Ok("Login successful");
+                    var response = new { Message = "Login successful", UserId = user_Id };
+                    return Ok(response);
                 }
                 else { return NotFound("Password or Username not found"); }
             }

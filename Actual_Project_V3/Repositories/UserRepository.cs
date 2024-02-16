@@ -93,8 +93,9 @@ namespace Actual_Project_V3.Repositories
             return username_exists;
         }
 
-        public async Task<IdentityResult> SignUp(User user)
+        public async Task<(IdentityResult,string)> SignUp(User user)
         {
+            string user_Id=null;
             User appuser = new User()
             {
                 Email = user.Email,
@@ -103,17 +104,24 @@ namespace Actual_Project_V3.Repositories
             };
             
             IdentityResult result=await UsrMgr.CreateAsync(appuser,user.Password);
-            return result;
+            if(result.Succeeded)
+            {
+                user_Id=appuser.Id;
+            }
+            return (result, user_Id);
         }
 
-        public async Task<bool> Login(string UserName, string Password)
-        {
+        public async Task<(bool,string)> Login(string UserName, string Password)
+        {            
             User user = await UsrMgr.FindByNameAsync(UserName);
+            string user_Id=user.Id;
+            bool found = false;
             if (user != null)
             {
-                return await UsrMgr.CheckPasswordAsync(user, Password);
+                found= await UsrMgr.CheckPasswordAsync(user, Password);
+                return (found,user_Id);
             }
-            else { return false; }
+            else { return (found,null); }
         }
         //public  void SignUp( User users )
         //{

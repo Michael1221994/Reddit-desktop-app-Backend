@@ -140,7 +140,7 @@ namespace Actual_Project_V3.Models
                 .WithOne(p => p.Post)
                 .HasForeignKey(p => p.Post_Id)
                 .IsRequired(false)
-                .OnDelete(DeleteBehavior.NoAction);
+                .OnDelete(DeleteBehavior.NoAction);//was no action
 
 
             // Configure the one-to-many relationship between comments and UpvoteDownvote
@@ -149,7 +149,7 @@ namespace Actual_Project_V3.Models
                 .WithOne(p => p.Comments)
                 .HasForeignKey(p => p.Comment_Id)
                 .IsRequired(false)
-                .OnDelete(DeleteBehavior.NoAction);
+                .OnDelete(DeleteBehavior.NoAction);//was no action
 
 
 
