@@ -16,6 +16,7 @@ builder.Services.AddScoped<ICommentRepository, CommentRepository>();
 builder.Services.AddScoped<ISubredditRepository, SubredditRepository>();
 builder.Services.AddScoped<IPostRepository, PostRepository>();
 builder.Services.AddScoped<ISearchRepository, SearchRepository>();
+builder.Services.AddScoped<Iupvotedownvote, upvotedownvoteRepository>();
 
 
 

@@ -8,5 +8,6 @@ namespace Actual_Project_V3.Repositories
         string AddSave( Save save);
         List<int> GetSaves(string Id);
         string UnSave(Save save);
+        bool saved(string Id, int Post_Id);
     }
 }

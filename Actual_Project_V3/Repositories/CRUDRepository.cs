@@ -96,12 +96,23 @@ namespace Actual_Project_V3.Repositories
             if (post != null)
             {
                 Comment comments = context.Comments.FirstOrDefault(s => s.Post_Id == post.Post_Id);
-                context.Comments.Remove(comments);
-                context.SaveChanges();
-                context.Posts.Remove(post);
-                context.SaveChanges();
-                confirm = "success";
-                return confirm;
+                if(comments != null)
+                {
+                    context.Comments.Remove(comments);
+                    context.SaveChanges();
+                    context.Posts.Remove(post);
+                    context.SaveChanges();
+                    confirm = "success";
+                    return confirm;
+                }
+                else
+                {
+                    context.Posts.Remove(post);
+                    context.SaveChanges();
+                    confirm = "success";
+                    return confirm;
+                }
+                
             }
             else
             {

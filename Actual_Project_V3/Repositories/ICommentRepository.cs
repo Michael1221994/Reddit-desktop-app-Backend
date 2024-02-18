@@ -6,7 +6,7 @@ namespace Actual_Project_V3.Repositories
     {
         string CreateComment(Comment comment);
         List<Comment> GetComment(int postId);
-        List<Comment> GetUserComment(string userId);
+        List<Comment> GetUserComment(string Id);
         string UpdateComment(Comment comment);
         string DeleteComment(int commentId);
     }

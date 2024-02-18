@@ -70,12 +70,22 @@ namespace Actual_Project_V3.Repositories
             }
             else if (user == null && post != null)
             {
-                return "no user found by that post Id";
+                return "no user found by that user Id";
             }
             else
             {
                 return "no user and no post found by those Ids";
             }
+        }
+
+        public bool saved(string Id, int Post_Id)
+        {          
+               Save saved = context.Saves.FirstOrDefault(s => s.Post_Id == Post_Id && s.User_Id==Id);
+               if(saved != null)
+                {
+                    return true;
+                }
+               else { return false; }            
         }
     }
 

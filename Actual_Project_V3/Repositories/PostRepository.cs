@@ -37,7 +37,12 @@ namespace Actual_Project_V3.Repositories
                 .Where(post => post.Posted_When.ThisDay())
                 .OrderByDescending(post => post.Posted_When)
                 .ToList();
-            return todayNewOrderedPosts;
+            if(todayNewOrderedPosts != null)
+            {
+                return todayNewOrderedPosts;
+            }
+            else { return null; }
+            
         }
 
         public List<Post> GetTopPosts(string when)
@@ -114,6 +119,13 @@ namespace Actual_Project_V3.Repositories
                 return filteredposts;
             }
             else return null;
+        }
+
+        public List<Post> GetUserPosts(string User_Id)
+        {
+            List<Post> userposts = allposts.Where(post=>post.User_Id==User_Id)
+                                   .OrderByDescending(post=>post.Posted_When).ToList();
+            return userposts;
         }
     }
 }

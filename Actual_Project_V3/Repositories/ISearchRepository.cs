@@ -1,4 +1,6 @@
-﻿namespace Actual_Project_V3.Repositories
+﻿using Actual_Project_V3.Models;
+
+namespace Actual_Project_V3.Repositories
 {
     public interface ISearchRepository
     {

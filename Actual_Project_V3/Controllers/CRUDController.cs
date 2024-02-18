@@ -22,43 +22,108 @@ namespace Actual_Project_V3.Controllers
         }
 
         [HttpPost]
-        public string MediaSave(IFormFile media, string type)
+        public IActionResult MediaSave(IFormFile media, string type)
         {
-            return repository.MediaSave(media, type);
+            List<string> errors = new List<string>();
+            if (ModelState.IsValid)
+            {
+                string confirm= repository.MediaSave(media, type);
+                return Ok(confirm);
+            }
+            else
+            {
+                foreach (var modelStateEntry in ModelState.Values)
+                {
+                    foreach (var error in modelStateEntry.Errors)
+                    {
+                        errors.Add(error.ErrorMessage);
+                    }
+                }
+            }
+            return BadRequest(errors);
+
         }
 
         [HttpPost]
-        public void CreatePost([FromBody] Post post)
+        public IActionResult CreatePost([FromBody] Post post)
         {
-            repository.CreatePost(post);
+            List<string> errors = new List<string>();
+            if (ModelState.IsValid)
+            {
+                repository.CreatePost(post);
+            }
+            else
+            {
+                foreach (var modelStateEntry in ModelState.Values)
+                {
+                    foreach (var error in modelStateEntry.Errors)
+                    {
+                        errors.Add(error.ErrorMessage);
+                    }
+                }
+            }
+            return BadRequest(errors);
+
         }
 
         [HttpPost]
         public IActionResult UpdatePost([FromBody] Post post)
         {
-            string  confirm= repository.UpdatePost(post);
-            if (confirm == "success")
+            List<string> errors = new List<string>();
+            if (ModelState.IsValid)
             {
-                return Ok();
+                string confirm = repository.UpdatePost(post);
+                if (confirm == "success")
+                {
+                    return Ok("success");
+                }
+                else
+                {
+                    return NotFound("Post not found");
+                }
             }
             else
             {
-                return NotFound("Post not found");
+                foreach (var modelStateEntry in ModelState.Values)
+                {
+                    foreach (var error in modelStateEntry.Errors)
+                    {
+                        errors.Add(error.ErrorMessage);
+                    }
+                }
             }
+            return BadRequest(errors);
+
         }
 
         [HttpPost]
         public IActionResult DeletePost(int Post_Id)
         {
-            string confirm= repository.DeletePost(Post_Id);
-            if (confirm == "success")
+            List<string> errors = new List<string>();
+            if (ModelState.IsValid)
             {
-                return  Ok("Deleted");
+                string confirm = repository.DeletePost(Post_Id);
+                if (confirm == "success")
+                {
+                    return Ok("Deleted");
+                }
+                else
+                {
+                    return NotFound("Post not found");
+                }
             }
             else
             {
-                return NotFound("Post not found");
+                foreach (var modelStateEntry in ModelState.Values)
+                {
+                    foreach (var error in modelStateEntry.Errors)
+                    {
+                        errors.Add(error.ErrorMessage);
+                    }
+                }
             }
+            return BadRequest(errors);
+
         }
 
         //[HttpGet]

@@ -62,7 +62,7 @@ namespace Actual_Project_V3.Controllers
                 confirm = _subredditRepository.LeaveSubreddit(JS.sub_id ,JS.User_Id);
                 if (confirm == "success")
                 {
-                    return Ok("Joined!");
+                    return Ok("left subreddit!");
                 }
                 else if (confirm == "fail")
                 {
@@ -70,7 +70,7 @@ namespace Actual_Project_V3.Controllers
                 }
                 else
                 {
-                    return BadRequest("couldn't join");
+                    return BadRequest("couldn't leave");
                 }
             }
             else
@@ -137,7 +137,7 @@ namespace Actual_Project_V3.Controllers
                 {
                     return NotFound("subreddit not found");
                 }
-                else { return BadRequest("subreddit with that name already exists"); }
+                else { return BadRequest(); }
                  
             //}
             //return BadRequest(ModelState); 

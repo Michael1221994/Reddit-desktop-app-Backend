@@ -149,7 +149,7 @@ namespace Actual_Project_V3.Models
                 .WithOne(p => p.Comments)
                 .HasForeignKey(p => p.Comment_Id)
                 .IsRequired(false)
-                .OnDelete(DeleteBehavior.NoAction);//was no action
+                .OnDelete(DeleteBehavior.Cascade);//was no action
 
 
 

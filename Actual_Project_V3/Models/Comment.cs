@@ -29,6 +29,7 @@ namespace Actual_Project_V3.Models
         public Post? Post { get; set; }
         [JsonIgnore]
         public Subreddit? Subreddit { get; set; }
+        
         public List<UpvoteDownvote>? UpvoteDownvotes { get; set; }
         
 

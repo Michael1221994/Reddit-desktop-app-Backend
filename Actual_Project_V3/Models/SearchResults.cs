@@ -1,6 +1,4 @@
-﻿using Actual_Project_V3.Models;
-
-namespace Actual_Project_V3.Repositories
+﻿namespace Actual_Project_V3.Models
 {
     public class SearchResults
     {

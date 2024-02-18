@@ -9,5 +9,6 @@ namespace Actual_Project_V3.Repositories
         List<Post> GetTopPosts(string when);
         List<Post> GetControversialPosts(string when);
         List<Post> GetSubPosts(int Sub_Id, string filter, string filterwithdate);
+        List<Post> GetUserPosts(string User_Id);
     }
 }

@@ -64,24 +64,24 @@ namespace Actual_Project_V3.Repositories
 
         public string UpdateSubreddit(Subreddit subreddit)
         {
-            var UpdatedSubreddit = context.Subreddits.Find(subreddit.Sub_Id);
-            Subreddit sub = context.Subreddits.FirstOrDefault(s => s.Subreddit_Name == subreddit.Subreddit_Name);
+            var original_subreddit = context.Subreddits.Find(subreddit.Sub_Id);
+            //Subreddit sub = context.Subreddits.FirstOrDefault(s => s.Subreddit_Name == subreddit.Subreddit_Name);
             string confirm = "";
-            if (sub!=null)
+            //if (sub==null)
+            //{
+            //    confirm = "subreddit with that name already exists";
+            //}
+            if (original_subreddit != null /*&& sub==null*/)//was else if
             {
-                confirm = "subreddit with that name already exists";
-            }
-            else if (UpdatedSubreddit != null && sub==null)
-            {
-                UpdatedSubreddit.Subreddit_Genre = subreddit.Subreddit_Genre;
-                UpdatedSubreddit.Subreddit_Name = subreddit.Subreddit_Name;
-                UpdatedSubreddit.Subreddit_Alt_Name = subreddit.Subreddit_Alt_Name;
-                UpdatedSubreddit.Subreddit_Description = subreddit.Subreddit_Description;
-                UpdatedSubreddit.Sub_IconImg_Name = subreddit.Sub_IconImg_Name;
-                UpdatedSubreddit.Sub_BackgroundImg_Name = subreddit.Sub_BackgroundImg_Name;
-                UpdatedSubreddit.Allowed_Flairs = subreddit.Allowed_Flairs;
+                original_subreddit.Subreddit_Genre = subreddit.Subreddit_Genre;
+                original_subreddit.Subreddit_Name = subreddit.Subreddit_Name;
+                original_subreddit.Subreddit_Alt_Name = subreddit.Subreddit_Alt_Name;
+                original_subreddit.Subreddit_Description = subreddit.Subreddit_Description;
+                original_subreddit.Sub_IconImg_Name = subreddit.Sub_IconImg_Name;
+                original_subreddit.Sub_BackgroundImg_Name = subreddit.Sub_BackgroundImg_Name;
+                original_subreddit.Allowed_Flairs = subreddit.Allowed_Flairs;
                 //UpdatedSubreddit.Members= subreddit.Members;
-                UpdatedSubreddit.Number_Of_Members = subreddit.Number_Of_Members;
+                original_subreddit.Number_Of_Members = subreddit.Number_Of_Members;
                 context.SaveChanges();
                 confirm = "success";
 
@@ -99,11 +99,20 @@ namespace Actual_Project_V3.Repositories
             if (subreddit != null)
             {
                 Post post = context.Posts.FirstOrDefault(s => s.Sub_Id == subreddit.Sub_Id);
-                context.Posts.Remove(post);
-                context.SaveChanges();
-                context.Subreddits.Remove(subreddit);
-                context.SaveChanges();
-                confirm = "success";
+                if(post != null)
+                {
+                    context.Posts.Remove(post);
+                    context.SaveChanges();
+                    context.Subreddits.Remove(subreddit);
+                    context.SaveChanges();
+                    confirm = "success";
+                }
+                else
+                {
+                    context.Subreddits.Remove(subreddit);
+                    context.SaveChanges();
+                    confirm = "success";
+                }                
             }
             else
             { confirm = "fail"; }

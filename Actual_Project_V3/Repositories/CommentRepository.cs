@@ -57,16 +57,17 @@ namespace Actual_Project_V3.Repositories
             return null; 
         }
 
-        public List<Comment> GetUserComment(string User_Id)
+        public List<Comment> GetUserComment(string Id)
         {
             List<Comment> comments = new List<Comment>();
-            User user = context.Users.Find(User_Id);
+            User user = context.Users.Find(Id);
             if (user != null)
             {
-                comments = context.Comments.Where(s => s.User_Id == User_Id).ToList();
+                comments = context.Comments.Where(s => s.User_Id == Id).ToList();
                 return comments;
             }
-            return null; // Or throw an exception if required
+            else { return null; }
+             
         }
 
         public string UpdateComment(Comment comment)
