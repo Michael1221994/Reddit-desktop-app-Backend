@@ -3,7 +3,19 @@ using Actual_Project_V3.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Actual_Project_V3.Repositories;
+
+var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: MyAllowSpecificOrigins,
+                      policy =>
+                      {
+                          policy.WithOrigins("http://example.com",
+                                              "http://www.contoso.com");
+                      });
+});
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -73,6 +85,7 @@ var app = builder.Build();
     app.UseStaticFiles();
 
     app.UseRouting();
+    app.UseCors(MyAllowSpecificOrigins);
     app.MapControllers();
 
     app.UseAuthentication();

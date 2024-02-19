@@ -240,5 +240,34 @@ namespace Actual_Project_V3.Controllers
         //        StatusCode = 200
         //    };
         //}
+
+        [HttpGet]
+        public IActionResult GetSubreddits(string Id)
+        {
+            List<string> errors = new List<string>();
+            if(ModelState.IsValid)
+            {
+                List<Subreddit> subs = _subredditRepository.GetSubreddits(Id);
+                if(subs == null)
+                {
+                    return NotFound("no subreddits joined");
+                }
+                else
+                {
+                    return Ok(subs);
+                }
+            }
+            else
+            {
+                foreach (var modelStateEntry in ModelState.Values)
+                {
+                    foreach (var error in modelStateEntry.Errors)
+                    {
+                        errors.Add(error.ErrorMessage);
+                    }
+                }
+            }
+            return BadRequest(errors);
+        }
     }
 }

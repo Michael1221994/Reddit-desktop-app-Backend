@@ -10,5 +10,6 @@ namespace Actual_Project_V3.Repositories
         Subreddit GetSubreddit(int subredditId);
         string JoinSubreddit(int Sub_Id, string User_Id);
         string LeaveSubreddit(int sub_id, string User_Id);
+        List<Subreddit> GetSubreddits(string Id);
     }
 }

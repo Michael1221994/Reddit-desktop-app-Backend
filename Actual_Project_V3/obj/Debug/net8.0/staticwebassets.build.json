@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "IaYcuh8uf6sjxnWevLW0AUssvCIT/cn2JBh0uq2rwnI=",
+  "Hash": "qJyyfVa2ICeR4E/RbDVDl4Z4D4t+Zlw2ujkGXahBxNw=",
   "Source": "Actual_Project_V3",
   "BasePath": "_content/Actual_Project_V3",
   "Mode": "Default",
@@ -1326,6 +1326,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Videos\\8a457f55-7d5d-4900-9d58-da1b9281da8f_ANDREW TATE GOES OFF ON NERDY KID\uD83E\uDD23.mp4"
+    },
+    {
+      "Identity": "C:\\Users\\micha\\source\\repos\\Actual_Project_V3\\Actual_Project_V3\\wwwroot\\Videos\\8e2a0b97-f61f-45e7-8e19-18e694e70855_video_2024-02-10_22-45-41.mp4",
+      "SourceId": "Actual_Project_V3",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\micha\\source\\repos\\Actual_Project_V3\\Actual_Project_V3\\wwwroot\\",
+      "BasePath": "_content/Actual_Project_V3",
+      "RelativePath": "Videos/8e2a0b97-f61f-45e7-8e19-18e694e70855_video_2024-02-10_22-45-41.mp4",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Videos\\8e2a0b97-f61f-45e7-8e19-18e694e70855_video_2024-02-10_22-45-41.mp4"
     },
     {
       "Identity": "C:\\Users\\micha\\source\\repos\\Actual_Project_V3\\Actual_Project_V3\\wwwroot\\Videos\\dac75d5f-e7f3-47c1-9b6c-3b1447fac06c_video_2024-02-10_22-45-41.mp4",

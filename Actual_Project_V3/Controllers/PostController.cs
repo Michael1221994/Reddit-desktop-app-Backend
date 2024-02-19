@@ -323,6 +323,50 @@ namespace Actual_Project_V3.Controllers
 
         }
 
+        [HttpGet]
+        public IActionResult GetPost(string Id, int Post_Id)
+        {
+            Post post = postRepository.GetPost(Post_Id);            
+            if(post != null)
+            {
+                bool upvote=false;
+                bool downvote=false;
+                string confirm = upvotedownvoteRepository.check_action(Id, post.Post_Id, "post");
+                if (confirm == "DownVote") { downvote = true; upvote = false; }
+                else if (confirm == "Upvote") { downvote = false; upvote = true; }
+                PostReturn postReturn = new PostReturn()
+                {
+                    Post_Id = post.Post_Id,
+                    Post_Type = post.Post_Type,
+                    Title = post.Title,
+                    Text = post.Text,
+                    Image_Name = post.Image_Name,
+                    Video_Name = post.Video_Name,
+                    Link = post.Link,
+                    Posted_When = post.Posted_When,
+                    Sub_Id = post.Sub_Id,
+                    User_Id = post.User_Id,
+                    Number_Of_Comments = post.Number_Of_Comments,
+                    Number_of_Upvotes = post.Number_of_Upvotes,
+                    Number_Of_DownVotes = post.Number_Of_DownVotes,
+                    Flair = post.Flair,
+                    upvote_flag = upvote,
+                    downvote_flag = downvote,
+                    saved_flag = SaveRepository.saved(Id, post.Post_Id)
+                };
+                return new JsonResult(postReturn)
+                {
+                    ContentType = "application/json",
+                    StatusCode = 200
+                };
+            }
+            else
+            {
+                return NotFound("No post");
+            }
+
+        }
+
 
     }
 }

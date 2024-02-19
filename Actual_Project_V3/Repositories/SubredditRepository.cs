@@ -165,5 +165,23 @@ namespace Actual_Project_V3.Repositories
             else { confirm = "fail"; }
             return confirm;
         }
+
+        public List<Subreddit> GetSubreddits(string Id)
+        {
+            List<JoinedSubreddits> joinedsubs= context.JoinedSubreddits.Where(sub=>sub.User_Id==Id).ToList();
+            List<Subreddit> subs = new List<Subreddit>();
+            foreach (JoinedSubreddits joinedsub in joinedsubs)
+            {
+                Subreddit subreddit = context.Subreddits.FirstOrDefault(sub => sub.Sub_Id == joinedsub.sub_id);
+                subs.Add(subreddit);
+            } 
+            
+            if (subs != null)
+            {
+                return subs;
+            }
+            else 
+                return null;
+        }
     }
 }

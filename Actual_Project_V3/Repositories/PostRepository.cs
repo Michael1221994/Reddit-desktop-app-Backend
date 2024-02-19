@@ -127,5 +127,18 @@ namespace Actual_Project_V3.Repositories
                                    .OrderByDescending(post=>post.Posted_When).ToList();
             return userposts;
         }
+
+        public Post GetPost(int Post_Id)
+        {
+            Post post = allposts.FirstOrDefault(post => post.Post_Id == Post_Id);
+            if(post != null)
+            {
+                return post;
+            }
+            else
+            {
+                return null;
+            }
+        }
     }
 }
