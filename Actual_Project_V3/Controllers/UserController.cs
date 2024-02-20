@@ -192,6 +192,35 @@ namespace Actual_Project_V3.Controllers
             }
             return BadRequest(errors);
         }
+
+        [HttpGet]
+        public async Task<ActionResult> GetUserInfo(string Id)
+        {
+            List<string> errors = new List<string>();
+            if (ModelState.IsValid)
+            {
+                User user=await userRepository.GetUserInfo(Id);
+                if (user == null)
+                {
+                    return NotFound("No user found by that Id");
+                }
+                else
+                {
+                    return Ok(user);
+                }
+            }
+            else
+            {
+                foreach (var modelStateEntry in ModelState.Values)
+                {
+                    foreach (var error in modelStateEntry.Errors)
+                    {
+                        errors.Add(error.ErrorMessage);
+                    }
+                }
+            }
+            return BadRequest(errors);
+        }
     }
 }
 

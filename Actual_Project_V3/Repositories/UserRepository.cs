@@ -376,6 +376,19 @@ namespace Actual_Project_V3.Repositories
             //return confirm;
         }
 
+        public async Task<User> GetUserInfo(string Id)
+        {
+            User user= await UsrMgr.FindByIdAsync(Id);
+            if (user != null)
+            {
+                return user;
+            }
+            else
+            {
+                return null;
+            }
+        } 
+
         //public  string Delete(int Id)
         //{
         //    //int ID = int.Parse(Id);

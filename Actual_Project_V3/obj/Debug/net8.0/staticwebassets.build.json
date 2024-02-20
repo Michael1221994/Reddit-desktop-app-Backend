@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "qJyyfVa2ICeR4E/RbDVDl4Z4D4t+Zlw2ujkGXahBxNw=",
+  "Hash": "SnomE9FemtngwM+I0leyebW6qFQtRzxPIW0Quronv18=",
   "Source": "Actual_Project_V3",
   "BasePath": "_content/Actual_Project_V3",
   "Mode": "Default",
@@ -148,6 +148,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Images\\dc42e328-d175-4c3a-b96f-543d1b3cf749_2020-09-14.png"
+    },
+    {
+      "Identity": "C:\\Users\\micha\\source\\repos\\Actual_Project_V3\\Actual_Project_V3\\wwwroot\\Images\\ff344c89-95d4-4e5d-83e5-e7b6abaa1bd1_img20230915_00133433.jpg",
+      "SourceId": "Actual_Project_V3",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\micha\\source\\repos\\Actual_Project_V3\\Actual_Project_V3\\wwwroot\\",
+      "BasePath": "_content/Actual_Project_V3",
+      "RelativePath": "Images/ff344c89-95d4-4e5d-83e5-e7b6abaa1bd1_img20230915_00133433.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\ff344c89-95d4-4e5d-83e5-e7b6abaa1bd1_img20230915_00133433.jpg"
     },
     {
       "Identity": "C:\\Users\\micha\\source\\repos\\Actual_Project_V3\\Actual_Project_V3\\wwwroot\\js\\site.js",
