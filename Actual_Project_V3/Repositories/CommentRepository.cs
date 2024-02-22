@@ -28,8 +28,11 @@ namespace Actual_Project_V3.Repositories
                     Downvote_Count=comment.Downvote_Count,
                     Upvote_Count=comment.Upvote_Count
                 };
-                context.Comments.Add(newcomment);
+                context.Comments.Add(newcomment);                
                 context.SaveChanges();
+                post.Number_Of_Comments++;
+                context.SaveChanges();
+
                 return "success";
             }
             else if(user!=null && post == null)
@@ -94,10 +97,13 @@ namespace Actual_Project_V3.Repositories
         public string DeleteComment(int commentId)
         {
             Comment comment = context.Comments.Find(commentId);
+            Post post=context.Posts.Find(comment.Post_Id);
             string confirmation = "";
             if (comment != null)
             {
-                context.Comments.Remove(comment);
+                context.Comments.Remove(comment);                
+                context.SaveChanges();
+                post.Number_Of_Comments--;
                 context.SaveChanges();
                 confirmation = "success";
             }

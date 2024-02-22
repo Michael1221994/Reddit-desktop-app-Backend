@@ -18,10 +18,10 @@ namespace Actual_Project_V3.Controllers
         }
 
         [HttpGet]
-        public IActionResult Search(string searchterm, int threshold)
+        public IActionResult Search(string searchterm)
         {
             List<string> errors = new List<string>();
-            SearchResults searchList = SearchRepository.Search(searchterm,threshold);
+            SearchResults searchList = SearchRepository.Search(searchterm,3);
             if (ModelState.IsValid)
             {
                 return Ok(searchList);

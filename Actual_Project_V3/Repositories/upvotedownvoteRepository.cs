@@ -27,13 +27,15 @@ namespace Actual_Project_V3.Repositories
                         {
                             Specific_Post.Number_of_Upvotes++;
                             confirm = "post Upvoted";
+                            context.SaveChanges();
                         }
                         else //if (Rating == 0)
                         {
                             Specific_Post.Number_Of_DownVotes++;
                             confirm = "post Downvoted";
+                            context.SaveChanges();
                         }
-                        context.SaveChanges();
+                       
 
                         UpvoteDownvote action = new UpvoteDownvote()
                         {
@@ -51,15 +53,68 @@ namespace Actual_Project_V3.Repositories
                     }
                 }
                 else
-                {
+                {                    
                     if (check.Rating == 0)
                     {
+                        context.UpvoteDownvote.Remove(check);
+                        context.SaveChanges();
                         Specific_Post.Number_Of_DownVotes--;
+                        context.SaveChanges();
+                        if(Rating== 1)
+                        {
+                            Specific_Post.Number_of_Upvotes++;
+                            context.SaveChanges();
+                            confirm = "upvote";
+                        }
+                        else
+                        {
+                            Specific_Post.Number_Of_DownVotes++;
+                            context.SaveChanges();
+                            confirm = "downvote";
+                        }
+                        UpvoteDownvote actions = new UpvoteDownvote()
+                        {
+                            User_Id = User_Id,
+                            Post_Id = Id,
+                            Rating = Rating
+                        };
+                        context.UpvoteDownvote.Add(actions);
+                        context.SaveChanges();
+
                     }
-                    else { Specific_Post.Number_of_Upvotes--; }
-                    context.UpvoteDownvote.Remove(check);
-                    context.SaveChanges();
-                    confirm = "post action undone";
+                    else if(check.Rating==1) {
+                        context.UpvoteDownvote.Remove(check);
+                        context.SaveChanges();
+                        Specific_Post.Number_of_Upvotes--;
+                        context.SaveChanges();
+                        if (Rating == 1)
+                        {
+                            Specific_Post.Number_of_Upvotes++;
+                            context.SaveChanges();
+                            confirm = "upvote";
+                        }
+                        else
+                        {
+                            Specific_Post.Number_Of_DownVotes++;
+                            context.SaveChanges();
+                            confirm = "downvote";
+                        }
+                        UpvoteDownvote action = new UpvoteDownvote()
+                        {
+                            User_Id = User_Id,
+                            Post_Id = Id,
+                            Rating = Rating
+                        };
+                        context.UpvoteDownvote.Add(action);
+                        context.SaveChanges();
+                        
+
+                    }
+                    else
+                    {
+                        confirm = "post action undone";
+                    }
+                    
                 }
 
             }
@@ -75,15 +130,15 @@ namespace Actual_Project_V3.Repositories
                         {
                             Specific_comment.Upvote_Count++;
                             confirm = "comment Upvoted";
+                            context.SaveChanges();
                         }
                         else //if (Rating == 0)
                         {
                             Specific_comment.Downvote_Count++;
                             confirm = "comment Downvoted";
+                            context.SaveChanges();
                         }
-
-                        context.SaveChanges();
-
+                                                
                         UpvoteDownvote action = new UpvoteDownvote()
                         {
                             User_Id = User_Id,
@@ -102,12 +157,63 @@ namespace Actual_Project_V3.Repositories
                 {
                     if (check.Rating == 0)
                     {
-                        Specific_comment.Downvote_Count--;
+                        context.UpvoteDownvote.Remove(check);
+                        context.SaveChanges();
+                        Specific_comment.Downvote_Count--;                        
+                        if (Rating == 1)
+                        {
+                            
+                            Specific_comment.Upvote_Count++;
+                            context.SaveChanges();
+                        }
+                        else
+                        {
+                            Specific_comment.Downvote_Count++;
+                            context.SaveChanges();
+                        }
+                        UpvoteDownvote action = new UpvoteDownvote()
+                        {
+                            User_Id = User_Id,
+                            Comment_Id = Id,
+                            Rating = Rating
+                        };
+                        context.UpvoteDownvote.Add(action);
+                        context.SaveChanges();
+
+
                     }
-                    else { Specific_comment.Upvote_Count--; }
-                    context.UpvoteDownvote.Remove(check);
-                    context.SaveChanges();
-                    confirm = "comment action undone";
+                    else if(check.Rating==1) {                         
+                        context.UpvoteDownvote.Remove(check);
+                        context.SaveChanges();
+                        Specific_comment.Upvote_Count--;
+                        if (Rating == 1)
+                        {
+                            Specific_comment.Upvote_Count++;
+                            context.SaveChanges();
+                            confirm = "C upvote";
+                        }
+                        else
+                        {
+                            Specific_comment.Downvote_Count++;
+                            context.SaveChanges();
+                            confirm = "c downvote";
+                        }
+                        UpvoteDownvote action = new UpvoteDownvote()
+                        {
+                            User_Id = User_Id,
+                            Comment_Id = Id,
+                            Rating = Rating
+                        };
+                        context.UpvoteDownvote.Add(action);
+                        context.SaveChanges();
+                    }
+                    else
+                    {
+                        confirm = "comment action undone";
+                    }
+                    
+                    //context.UpvoteDownvote.Remove(check);
+                    //context.SaveChanges();
                 }
 
 
