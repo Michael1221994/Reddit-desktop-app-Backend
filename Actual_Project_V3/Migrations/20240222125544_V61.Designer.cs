@@ -4,6 +4,7 @@ using Actual_Project_V3.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Actual_Project_V3.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20240222125544_V61")]
+    partial class V61
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -45,7 +48,7 @@ namespace Actual_Project_V3.Migrations
 
                     b.Property<string>("Reply_To")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("Sub_Id")
                         .HasColumnType("int");
@@ -55,15 +58,15 @@ namespace Actual_Project_V3.Migrations
 
                     b.Property<string>("User_Id")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Comment_Id");
 
                     b.HasIndex("Post_Id");
 
-                    b.HasIndex("Sub_Id");
+                    b.HasIndex("Reply_To");
 
-                    b.HasIndex("User_Id");
+                    b.HasIndex("Sub_Id");
 
                     b.ToTable("Comments");
                 });
@@ -498,15 +501,15 @@ namespace Actual_Project_V3.Migrations
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.HasOne("Actual_Project_V3.Models.Subreddit", "Subreddit")
+                    b.HasOne("Actual_Project_V3.Models.User", "User")
                         .WithMany("Comments")
-                        .HasForeignKey("Sub_Id")
+                        .HasForeignKey("Reply_To")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Actual_Project_V3.Models.User", "User")
+                    b.HasOne("Actual_Project_V3.Models.Subreddit", "Subreddit")
                         .WithMany("Comments")
-                        .HasForeignKey("User_Id")
+                        .HasForeignKey("Sub_Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

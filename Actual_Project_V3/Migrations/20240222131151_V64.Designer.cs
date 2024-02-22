@@ -4,6 +4,7 @@ using Actual_Project_V3.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Actual_Project_V3.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20240222131151_V64")]
+    partial class V64
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -53,6 +56,9 @@ namespace Actual_Project_V3.Migrations
                     b.Property<int>("Upvote_Count")
                         .HasColumnType("int");
 
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("User_Id")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
@@ -62,6 +68,8 @@ namespace Actual_Project_V3.Migrations
                     b.HasIndex("Post_Id");
 
                     b.HasIndex("Sub_Id");
+
+                    b.HasIndex("UserId");
 
                     b.HasIndex("User_Id");
 
@@ -504,6 +512,10 @@ namespace Actual_Project_V3.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Actual_Project_V3.Models.User", null)
+                        .WithMany("Replying")
+                        .HasForeignKey("UserId");
+
                     b.HasOne("Actual_Project_V3.Models.User", "User")
                         .WithMany("Comments")
                         .HasForeignKey("User_Id")
@@ -714,6 +726,8 @@ namespace Actual_Project_V3.Migrations
                     b.Navigation("JoinedSubreddits");
 
                     b.Navigation("Posts");
+
+                    b.Navigation("Replying");
 
                     b.Navigation("Subreddits");
 

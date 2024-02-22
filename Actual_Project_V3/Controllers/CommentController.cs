@@ -119,7 +119,7 @@ namespace Actual_Project_V3.Controllers
                         Post_Id = comment.Post_Id,
                         Sub_Id = comment.Sub_Id,
                         Comments = comment.Comments,
-                        Reply_To = comment.Reply_To,
+                        Reply_To=comment.Reply_To,
                         Commented_When = comment.Commented_When,
                         Downvote_Count = comment.Downvote_Count,
                         Upvote_Count = comment.Upvote_Count,

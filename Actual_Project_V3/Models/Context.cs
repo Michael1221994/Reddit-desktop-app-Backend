@@ -61,8 +61,8 @@ namespace Actual_Project_V3.Models
             modelBuilder.Entity<User>()
                 .HasMany(s => s.Comments)
                 .WithOne(p => p.User)
-                .HasForeignKey(p => p.User_Id)
-                .OnDelete(DeleteBehavior.NoAction);
+                .HasForeignKey(p => p.User_Id)                
+                .OnDelete(DeleteBehavior.Cascade);
 
             // Configure the one-to-many relationship between User and UpvoteDownvotes
             modelBuilder.Entity<User>()
@@ -151,7 +151,7 @@ namespace Actual_Project_V3.Models
                 .IsRequired(false)
                 .OnDelete(DeleteBehavior.Cascade);//was no action
 
-
+            
 
 
             base.OnModelCreating(modelBuilder);

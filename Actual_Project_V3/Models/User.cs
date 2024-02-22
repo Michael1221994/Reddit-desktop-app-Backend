@@ -36,7 +36,7 @@ namespace Actual_Project_V3.Models
         [JsonIgnore]
         public List<Post>? Posts { get; set; }
         [JsonIgnore]
-        public List<Comment>? Comments { get; set; }
+        public List<Comment>? Comments { get; set; }       
         [JsonIgnore]
         public List<UpvoteDownvote>? UpvoteDownvotes { get; set; }
 

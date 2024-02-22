@@ -16,7 +16,8 @@ namespace Actual_Project_V3.Models
         [ForeignKey("Sub_Id")]
         public int Sub_Id { get; set; }
         public string Comments {  get; set; }
-        public int? Reply_To{get; set;}
+        [ForeignKey("Id")]
+        public string Reply_To{get; set;}
         //public List<int>? Thread_Order { get; set; }
         public DateTime Commented_When { get; set; }
         public int Downvote_Count { get; set; }
