@@ -102,10 +102,10 @@ namespace Actual_Project_V3.Repositories
             {
                 List<Post> filteredpostswithdate = filterwithdate switch
                 {
-                    "This Day" => allposts.Where(post => post.Posted_When.ThisDay()).ToList(),
-                    "This Week" => allposts.Where(post => post.Posted_When.ThisWeek()).ToList(),
-                    "This Month" => allposts.Where(post => post.Posted_When.ThisMonth()).ToList(),
-                    "This Year" => allposts.Where(post => post.Posted_When.ThisYear()).ToList(),
+                    "This Day" => allposts.Where(post => post.Sub_Id==Sub_Id && post.Posted_When.ThisDay()).ToList(),
+                    "This Week" => allposts.Where(post => post.Sub_Id == Sub_Id && post.Posted_When.ThisWeek()).ToList(),
+                    "This Month" => allposts.Where(post => post.Sub_Id == Sub_Id && post.Posted_When.ThisMonth()).ToList(),
+                    "This Year" => allposts.Where(post => post.Sub_Id == Sub_Id && post.Posted_When.ThisYear()).ToList(),
                     _ => allposts // Default to all time
                 };
                 List<Post> filteredposts = filter switch
