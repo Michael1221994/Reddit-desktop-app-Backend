@@ -269,5 +269,37 @@ namespace Actual_Project_V3.Controllers
             }
             return BadRequest(errors);
         }
+
+        [HttpPost]
+        public IActionResult HasJoined(string Id, int Sub_Id)
+        {
+            bool confirm;
+            List<string> errors = new List<string>();
+            if (ModelState.IsValid)
+            {
+               confirm= _subredditRepository.HasJoined(Id,Sub_Id);
+                if (confirm == true)
+                {
+                    return Ok("User is a member of the subreddit");
+                }
+                else
+                {
+                    return NotFound("User is not a member");
+                }
+                
+            }
+            else
+            {
+                foreach (var modelStateEntry in ModelState.Values)
+                {
+                    foreach (var error in modelStateEntry.Errors)
+                    {
+                        errors.Add(error.ErrorMessage);
+                    }
+                }
+            }
+            return BadRequest(errors);
+        }
     }
 }
+

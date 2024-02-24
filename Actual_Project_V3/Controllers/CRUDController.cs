@@ -51,6 +51,7 @@ namespace Actual_Project_V3.Controllers
             if (ModelState.IsValid)
             {
                 repository.CreatePost(post);
+                return Ok("success");
             }
             else
             {
@@ -61,8 +62,9 @@ namespace Actual_Project_V3.Controllers
                         errors.Add(error.ErrorMessage);
                     }
                 }
+                return BadRequest(errors);
             }
-            return BadRequest(errors);
+            
 
         }
 
@@ -91,8 +93,9 @@ namespace Actual_Project_V3.Controllers
                         errors.Add(error.ErrorMessage);
                     }
                 }
+                return BadRequest(errors);
             }
-            return BadRequest(errors);
+            
 
         }
 

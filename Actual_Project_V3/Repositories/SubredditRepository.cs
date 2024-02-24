@@ -183,5 +183,18 @@ namespace Actual_Project_V3.Repositories
             else 
                 return null;
         }
+
+        public bool HasJoined(string Id, int Sub_Id)
+        {
+            JoinedSubreddits joined=context.JoinedSubreddits.FirstOrDefault(join=>join.User_Id==Id && join.sub_id==Sub_Id);
+            if (joined != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }
