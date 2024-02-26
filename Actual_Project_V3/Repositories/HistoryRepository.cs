@@ -41,13 +41,19 @@ namespace Actual_Project_V3.Repositories
             }
         }
 
-        public List<int> GetHistory(string Id)
+        public List<Post> GetHistory(string Id)
         {
             User user = context.Users.Find(Id);
             if (user != null)
             {
                 List<int> ids = context.History.Where(s => s.User_Id == Id).Select(P => P.Post_Id).ToList();
-                return ids;
+                List<Post> Histories = new List<Post>();
+                foreach(int id in ids)
+                {
+                    Post history= context.Posts.FirstOrDefault(p=>p.Post_Id== id);
+                    Histories.Add(history);
+                }
+                return Histories;
             }
             else
                 return null;

@@ -265,5 +265,55 @@ namespace Actual_Project_V3.Repositories
 
             return confirm;
         }
+
+        public List<Post> GetUpvotedDownvoted(string Id, string type)
+        {
+            if(!string.IsNullOrEmpty(Id) || !string.IsNullOrEmpty(type))
+            {
+                List<Post> ratedposts = new List<Post>();
+                List<UpvoteDownvote> upvotedownvote = new List<UpvoteDownvote>();
+                if (type == "Upvotes")
+                {
+                    upvotedownvote=context.UpvoteDownvote.Where(ud=>ud.User_Id==Id && ud.Rating==1).ToList();
+                    if (upvotedownvote != null)
+                    {
+                        foreach (UpvoteDownvote postid in upvotedownvote)
+                        {
+                            Post ratedpost = context.Posts.FirstOrDefault(p => p.Post_Id == postid.Post_Id);
+                            ratedposts.Add(ratedpost);
+                        }
+                        return ratedposts;
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                    
+                }
+                else if(type == "Downvotes")
+                {
+                    upvotedownvote = context.UpvoteDownvote.Where(ud => ud.User_Id == Id && ud.Rating == 0).ToList();
+                    if(upvotedownvote != null)
+                    {
+                        foreach (UpvoteDownvote postid in upvotedownvote)
+                        {
+                            Post ratedpost = context.Posts.FirstOrDefault(p => p.Post_Id == postid.Post_Id);
+                            ratedposts.Add(ratedpost);
+                        }
+                        return ratedposts;
+                    }
+                    else { return null; }
+
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            else
+            {
+                return null;
+            }
+        }
     }
 }

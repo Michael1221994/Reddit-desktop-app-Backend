@@ -41,13 +41,19 @@ namespace Actual_Project_V3.Repositories
             }
         }
 
-        public List<int> GetSaves(string Id)
+        public List<Post> GetSaves(string Id)
         {
             User user = context.Users.Find(Id);
             if (user != null)
             {
+                List<Post> saved= new List<Post>();
                 List<int> ids = context.Saves.Where(s => s.User_Id == Id).Select(P => P.Post_Id).ToList();
-                return ids;
+                foreach(int id in ids)
+                {
+                    Post savedposts=context.Posts.FirstOrDefault(p=>p.Post_Id == id);
+                    saved.Add(savedposts);
+                }
+                return saved;
             }
             else
                 return null;

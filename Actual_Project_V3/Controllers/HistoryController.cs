@@ -47,10 +47,10 @@ namespace Actual_Project_V3.Controllers
         }
 
         [HttpGet]
-        public ActionResult<List<int>> GetHistory(string Id)
+        public IActionResult GetHistory(string Id)
         {
             List<string> errors = new List<string>();
-            List<int> history = HistoryRepository.GetHistory(Id);
+            List<Post> history = HistoryRepository.GetHistory(Id);
             if (ModelState.IsValid)
             {
                 if (history != null)

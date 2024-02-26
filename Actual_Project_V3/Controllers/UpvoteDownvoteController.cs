@@ -1,6 +1,7 @@
 ﻿using Actual_Project_V3.Models;
 using Actual_Project_V3.Repositories;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace Actual_Project_V3.Controllers
 {
@@ -48,5 +49,27 @@ namespace Actual_Project_V3.Controllers
             return BadRequest(errors);
 
         }
+
+        [HttpGet]
+        public IActionResult GetUpvotedDownvoted(string Id, string type)
+        {
+            List<string> errors = new List<string>();
+            if (ModelState.IsValid)
+            {
+                List<Post> ratedposts=upvotedownvoteRepository.GetUpvotedDownvoted(Id, type);
+                return Ok(ratedposts);
+            }
+            else
+            {
+                foreach (var modelStateEntry in ModelState.Values)
+                {
+                    foreach (var error in modelStateEntry.Errors)
+                    {
+                        errors.Add(error.ErrorMessage);
+                    }
+                }
+            }
+            return BadRequest(errors);
+        } 
     }
 }

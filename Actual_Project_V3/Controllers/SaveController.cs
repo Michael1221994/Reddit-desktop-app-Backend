@@ -48,10 +48,10 @@ namespace Actual_Project_V3.Controllers
         [HttpGet]
         public ActionResult<List<int>> GetSaves(string Id)
         {
-            List<string> errors = new List<string>();
-            List<int> saves = SaveRepository.GetSaves(Id);
+            List<string> errors = new List<string>();            
             if (ModelState.IsValid)
             {
+                List<Post> saves = SaveRepository.GetSaves(Id);
                 if (saves != null)
                 {
                     return new JsonResult(saves)

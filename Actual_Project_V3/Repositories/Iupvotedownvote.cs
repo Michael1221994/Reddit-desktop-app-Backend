@@ -5,5 +5,6 @@ namespace Actual_Project_V3.Repositories
     {
         string PostRate(string User_Id, int Id, int Rating, string Type);
         string check_action(string Id, int Post_Id, string Type);
+        List<Post> GetUpvotedDownvoted(string Id, string type);
     }
 }
