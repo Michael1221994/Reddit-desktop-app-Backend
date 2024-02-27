@@ -28,7 +28,7 @@ namespace Actual_Project_V3.Controllers
             if (ModelState.IsValid)
             {
                 string confirm = HistoryRepository.PostHistory(history);
-                if (confirm == "success")
+                if (confirm == "success" || confirm== "already saved")
                 {
                     return Ok(confirm);
                 }

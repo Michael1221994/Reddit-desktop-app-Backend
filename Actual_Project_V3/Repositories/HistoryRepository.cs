@@ -15,30 +15,36 @@ namespace Actual_Project_V3.Repositories
         {
             User user = context.Users.Find(history.User_Id);
             Post post = context.Posts.Find(history.Post_Id);
-            if (post != null && user != null)
+            History history1= context.History.FirstOrDefault(h=>h.User_Id==history.User_Id && h.Post_Id==history.Post_Id);
+            if(history1==null)
             {
-                History addhistory = new History()
+                if (post != null && user != null)
                 {
-                    User_Id = history.User_Id,
-                    Post_Id = history.Post_Id,
-                    
-                };
-                context.History.Add(addhistory);
-                context.SaveChanges();
-                return "success";
+                    History addhistory = new History()
+                    {
+                        User_Id = history.User_Id,
+                        Post_Id = history.Post_Id,
+
+                    };
+                    context.History.Add(addhistory);
+                    context.SaveChanges();
+                    return "success";
+                }
+                else if (user != null && post == null)
+                {
+                    return "no post found by that post Id";
+                }
+                else if (user == null && post != null)
+                {
+                    return "no user found by that post Id";
+                }
+                else
+                {
+                    return "no user and no post found by those Ids";
+                }
             }
-            else if (user != null && post == null)
-            {
-                return "no post found by that post Id";
-            }
-            else if (user == null && post != null)
-            {
-                return "no user found by that post Id";
-            }
-            else
-            {
-                return "no user and no post found by those Ids";
-            }
+            else { return "already saved"; }
+            
         }
 
         public List<Post> GetHistory(string Id)
