@@ -8,9 +8,13 @@ namespace Actual_Project_V3.Controllers
     public class HistoryController : Controller
     {
         private readonly IHistoryRepository HistoryRepository;
-        public HistoryController(IHistoryRepository _HistoryRepository)
+        private readonly ISaveRepository SaveRepository;
+        private readonly Iupvotedownvote upvotedownvoteRepository;
+        public HistoryController(IHistoryRepository _HistoryRepository, ISaveRepository _SaveRepository, Iupvotedownvote upvotedownvoteRepository)
         {
             HistoryRepository = _HistoryRepository;
+            SaveRepository = _SaveRepository;
+            this.upvotedownvoteRepository = upvotedownvoteRepository;
         }
         public IActionResult Index()
         {
@@ -50,12 +54,43 @@ namespace Actual_Project_V3.Controllers
         public IActionResult GetHistory(string Id)
         {
             List<string> errors = new List<string>();
+            List<PostReturn> postReturns = new List<PostReturn>();
             List<Post> history = HistoryRepository.GetHistory(Id);
             if (ModelState.IsValid)
             {
                 if (history != null)
                 {
-                    return new JsonResult(history)
+                    foreach(Post post in history)
+                    {
+                        bool upvote;
+                        bool downvote;
+                        string confirm = upvotedownvoteRepository.check_action(Id, post.Post_Id, "post");
+                        if (confirm == "DownVote") { downvote = true; upvote = false; }
+                        else if (confirm == "Upvote") { downvote = false; upvote = true; }
+                        else { downvote = false; upvote = false; }
+                        PostReturn postReturn = new PostReturn()
+                        {
+                            Post_Id = post.Post_Id,
+                            Post_Type = post.Post_Type,
+                            Title = post.Title,
+                            Text = post.Text,
+                            Image_Name = post.Image_Name,
+                            Video_Name = post.Video_Name,
+                            Link = post.Link,
+                            Posted_When = post.Posted_When,
+                            Sub_Id = post.Sub_Id,
+                            User_Id = post.User_Id,
+                            Number_Of_Comments = post.Number_Of_Comments,
+                            Number_of_Upvotes = post.Number_of_Upvotes,
+                            Number_Of_DownVotes = post.Number_Of_DownVotes,
+                            Flair = post.Flair,
+                            upvote_flag = upvote,
+                            downvote_flag = downvote,
+                            saved_flag = SaveRepository.saved(Id, post.Post_Id)
+                        };
+                        postReturns.Add(postReturn);
+                    }
+                    return new JsonResult(postReturns)
                     {
                         ContentType = "application/json",
                         StatusCode = 200
